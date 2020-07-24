@@ -4,14 +4,16 @@
     "description": "",
     "dependencies": {
         "device": "*",
-        "pxt-turtlelogo": "github:abegel/pxt-turtlelogo#v1.0.3",
+        "pxt-turtlelogo": "github:abegel/pxt-turtlelogo#v1.0.4",
         "animation": "*",
         "arcade-sprite-data": "github:microsoft/arcade-sprite-data#v0.0.6"
     },
     "files": [
         "main.blocks",
         "main.ts",
-        "README.md"
+        "README.md",
+        "tilemap.g.jres",
+        "tilemap.g.ts"
     ],
     "testFiles": [
         "test.ts"
