@@ -1,6 +1,33 @@
 namespace SpriteKind {
     export const neutral = SpriteKind.create()
 }
+function SpawnMeteor3 () {
+    meteor = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . a a . . . . . . . 
+        . . . . . a c b a c . . . . . . 
+        . . . . c c b c f a c f . . . . 
+        . . . . a f b b b a c a . . . . 
+        . . . . a f f b a f c c . . . . 
+        . . . . c b b a f f c a . . . . 
+        . . . . c b f a f a c c . . . . 
+        . . . . . c c b b b c . . . . . 
+        . . . . . . c c f b . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Enemy)
+    meteor.setPosition(randint(0, 116), 10)
+    sprites.setInstant2DGravityAcceleration(
+    meteor,
+    80,
+    58,
+    10
+    )
+}
 game.onGameUpdateWithHeading(function () {
     controller.moveSprite(UFO, 50, 50)
     console.logValue("x", UFO.x)
@@ -25,7 +52,34 @@ function SpawnMeteor2 () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `, SpriteKind.Enemy)
-    meteor.setPosition(200, randint(0, 116))
+    meteor.setPosition(150, randint(0, 116))
+    sprites.setInstant2DGravityAcceleration(
+    meteor,
+    80,
+    58,
+    10
+    )
+}
+function SpawnMeteor4 () {
+    meteor = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . a a . . . . . . . 
+        . . . . . a c b a c . . . . . . 
+        . . . . c c b c f a c f . . . . 
+        . . . . a f b b b a c a . . . . 
+        . . . . a f f b a f c c . . . . 
+        . . . . c b b a f f c a . . . . 
+        . . . . c b f a f a c c . . . . 
+        . . . . . c c b b b c . . . . . 
+        . . . . . . c c f b . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Enemy)
+    meteor.setPosition(randint(0, 116), 110)
     sprites.setInstant2DGravityAcceleration(
     meteor,
     80,
@@ -34,6 +88,9 @@ function SpawnMeteor2 () {
     )
 }
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.neutral, function (sprite, otherSprite) {
+    sprite.destroy()
+})
+scene.onHitWall(SpriteKind.Enemy, function (sprite, location) {
     sprite.destroy()
 })
 function Start_Screen () {
@@ -58,7 +115,7 @@ function SpawnMeteor () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `, SpriteKind.Enemy)
-    meteor.setPosition(0, randint(0, 116))
+    meteor.setPosition(10, randint(0, 116))
     sprites.setInstant2DGravityAcceleration(
     meteor,
     80,
@@ -117,6 +174,10 @@ let Black_Hole = sprites.create(img`
 Black_Hole.setPosition(80, 58)
 SpawnMeteor()
 SpawnMeteor2()
+SpawnMeteor3()
 game.onUpdateInterval(5000, function () {
     SpawnMeteor()
+    SpawnMeteor2()
+    SpawnMeteor3()
+    SpawnMeteor4()
 })
