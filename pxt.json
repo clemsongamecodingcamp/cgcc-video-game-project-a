@@ -4,7 +4,7 @@
     "description": "",
     "dependencies": {
         "device": "*",
-        "pxt-turtlelogo": "github:abegel/pxt-turtlelogo#v1.0.3",
+        "pxt-turtlelogo": "github:abegel/pxt-turtlelogo#v1.0.7",
         "animation": "*",
         "arcade-sprite-data": "github:microsoft/arcade-sprite-data#v0.0.6"
     },
@@ -19,7 +19,7 @@
         "test.ts"
     ],
     "targetVersions": {
-        "target": "1.0.15",
+        "target": "1.1.5",
         "targetId": "arcade"
     },
     "supportedTargets": [
