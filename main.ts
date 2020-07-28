@@ -6,6 +6,33 @@ game.onGameUpdateWithHeading(function () {
     console.logValue("x", UFO.x)
     console.logValue("y", UFO.y)
 })
+function SpawnMeteor2 () {
+    meteor = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . a a . . . . . . . 
+        . . . . . a c b a c . . . . . . 
+        . . . . c c b c f a c f . . . . 
+        . . . . a f b b b a c a . . . . 
+        . . . . a f f b a f c c . . . . 
+        . . . . c b b a f f c a . . . . 
+        . . . . c b f a f a c c . . . . 
+        . . . . . c c b b b c . . . . . 
+        . . . . . . c c f b . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Enemy)
+    meteor.setPosition(200, randint(0, 116))
+    sprites.setInstant2DGravityAcceleration(
+    meteor,
+    80,
+    58,
+    10
+    )
+}
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.neutral, function (sprite, otherSprite) {
     sprite.destroy()
 })
@@ -38,9 +65,6 @@ function SpawnMeteor () {
     58,
     10
     )
-    if (true) {
-    	
-    }
 }
 let meteor: Sprite = null
 let UFO: Sprite = null
@@ -92,6 +116,7 @@ let Black_Hole = sprites.create(img`
     `, SpriteKind.neutral)
 Black_Hole.setPosition(80, 58)
 SpawnMeteor()
+SpawnMeteor2()
 game.onUpdateInterval(5000, function () {
     SpawnMeteor()
 })
