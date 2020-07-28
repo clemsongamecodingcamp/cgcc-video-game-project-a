@@ -1,11 +1,48 @@
+namespace SpriteKind {
+    export const neutral = SpriteKind.create()
+}
 game.onGameUpdateWithHeading(function () {
     controller.moveSprite(UFO, 50, 50)
     console.logValue("x", UFO.x)
     console.logValue("y", UFO.y)
 })
+sprites.onOverlap(SpriteKind.Enemy, SpriteKind.neutral, function (sprite, otherSprite) {
+    sprite.destroy()
+})
 function Start_Screen () {
     game.showLongText("This is my game. - By a Clemson First-Year Student", DialogLayout.Bottom)
 }
+function SpawnMeteor () {
+    meteor = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . a a . . . . . . . 
+        . . . . . a c b a c . . . . . . 
+        . . . . c c b c f a c f . . . . 
+        . . . . a f b b b a c a . . . . 
+        . . . . a f f b a f c c . . . . 
+        . . . . c b b a f f c a . . . . 
+        . . . . c b f a f a c c . . . . 
+        . . . . . c c b b b c . . . . . 
+        . . . . . . c c f b . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Enemy)
+    meteor.setPosition(0, randint(0, 116))
+    sprites.setInstant2DGravityAcceleration(
+    meteor,
+    80,
+    58,
+    10
+    )
+    if (true) {
+    	
+    }
+}
+let meteor: Sprite = null
 let UFO: Sprite = null
 tiles.setTilemap(tiles.createTilemap(hex`0a00070004030303030303030309020101010101010101080201010d01010b010108020101010101010101080201010a01010c0101080201010101010101010806070707070707070705`, img`
     . . . . . . . . . . 
@@ -52,5 +89,9 @@ let Black_Hole = sprites.create(img`
     . 2 f f f f f f f f f f f f 2 . 
     . . 2 f f f f f f f f f f 2 . . 
     . . . 2 2 2 2 2 2 2 2 2 2 . . . 
-    `, SpriteKind.Player)
+    `, SpriteKind.neutral)
 Black_Hole.setPosition(80, 58)
+SpawnMeteor()
+game.onUpdateInterval(5000, function () {
+    SpawnMeteor()
+})
