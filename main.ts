@@ -64,6 +64,9 @@ function SpawnMeteor2 () {
     10
     )
 }
+function Instructions (text: string) {
+    game.showLongText(text, DialogLayout.Bottom)
+}
 function SpawnMeteor4 () {
     meteor = sprites.create(img`
         . . . . . . . . . . . . . . . . 
@@ -98,7 +101,8 @@ scene.onHitWall(SpriteKind.Enemy, function (sprite, location) {
     sprite.destroy()
 })
 function Start_Screen () {
-    game.showLongText("This is my game. - By a Clemson First-Year Student", DialogLayout.Bottom)
+    Instructions("Welcome to Black Hole Apocalypse")
+    Instructions("Use the Arrow Keys To Move")
 }
 function SpawnMeteor () {
     meteor = sprites.create(img`
