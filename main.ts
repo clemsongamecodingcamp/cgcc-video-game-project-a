@@ -190,9 +190,13 @@ UFO = sprites.create(img`
     `, SpriteKind.Player)
 UFO.setPosition(80, 30)
 info.setLife(3)
+info.setScore(0)
 game.onUpdateInterval(5000, function () {
     SpawnMeteor()
     SpawnMeteor2()
     SpawnMeteor3()
     SpawnMeteor4()
+})
+game.onUpdateInterval(500, function () {
+    info.changeScoreBy(1)
 })
