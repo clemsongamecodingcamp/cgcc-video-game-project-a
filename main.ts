@@ -141,6 +141,7 @@ let meteor: Sprite = null
 let UFO: Sprite = null
 let Black_Hole: Sprite = null
 let IsTimeStarted = false
+Start_Screen()
 tiles.setTilemap(tiles.createTilemap(hex`0a00070004030303030303030309020101010101010101080201010d01010b010108020101010101010101080201010a01010c0101080201010101010101010806070707070707070705`, img`
     . . . . . . . . . . 
     . . . . . . . . . . 
