@@ -74,6 +74,11 @@
         "mimeType": "image/x-mkcd-f4",
         "tilemapTile": true
     },
+    "tile15": {
+        "data": "hwQQABAAAAD/////H//////////1//////////////////////////////////H/////////X/////////8f//////////////////////////8V/////////1///////x//////////X///////////8f//////////////9f///////19R/w==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true
+    },
     "*": {
         "mimeType": "image/x-mkcd-f4",
         "dataEncoding": "base64",
