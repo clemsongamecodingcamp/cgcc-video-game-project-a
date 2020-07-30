@@ -47,7 +47,7 @@ function SpawnSpaceShark () {
         . . . . . . . . . . . . . . c c c f f f b d b b f c c . . . . . f b b f 
         . . . . . . . . . . . . . . . . . . . . f f f f f . . . . . . . . f f f 
         `, SpriteKind.Enemy)
-    SpaceShark.setPosition(140, randint(0, 116))
+    SpaceShark.setPosition(140, randint(0, 100))
     sprites.setInstant2DGravityAcceleration(
     SpaceShark,
     80,
@@ -118,7 +118,7 @@ function SpawnBookShelf () {
         f d f f f f f f f f f f f f f f f f f f f f d f 
         f f f f f f f f f f f f f f f f f f f f f f f f 
         `, SpriteKind.Enemy)
-    Bookshelf.setPosition(randint(0, 116), 110)
+    Bookshelf.setPosition(randint(0, 116), 99)
     sprites.setInstant2DGravityAcceleration(
     Bookshelf,
     80,
