@@ -28,6 +28,33 @@ function SpawnMeteor3 () {
     10
     )
 }
+function SpawnSpaceShark () {
+    SpaceShark = sprites.create(img`
+        . . . . . . . . . . . f f f f f f f . . . c c f f f . . . . . . . . . . 
+        . . . . . . . . . . f b b b b b b b f f c b b b b f . . . . . . . . . . 
+        . . . . . . . . . . f b b 1 1 1 b b b b b f f b f . . . . . . . . . . . 
+        . . . . . . . . . . f b 1 1 1 1 1 f f b b b b f f . . . . . . . . . . . 
+        . . . . . . . . . . f 1 c c c c 1 f f b b b b b c f f . . . . . . . . . 
+        . . . . . . . . . . f f c 1 c 1 c 1 b b c b c b c c c f . . . . . . . . 
+        . . . . 2 2 2 2 2 . . f c c 3 3 3 1 b b b c b c b c c c f . . c c c c c 
+        . 2 2 2 2 2 2 2 2 2 . . c 3 3 3 c 1 b b b c b c b c c c c f c d d b b c 
+        . . . 2 2 2 2 2 2 2 . . c 3 3 3 c 1 b b b b b b b c c c c c d d b c c . 
+        . 2 2 2 2 2 2 2 2 . . . c 3 3 3 c 1 1 b b b b b c c c c c c b b c c . . 
+        . . . 2 2 2 2 2 2 2 . c c 3 3 1 c 1 1 b b b b c c c c c c f b c c f . . 
+        . . . . . . . . . . . c c 1 3 c 1 1 c b b b c c c c c b b c f c c f . . 
+        . . . . . . . . . . . c 1 1 1 1 1 1 c b b b f d d d d d c . f b b c f . 
+        . . . . . . . . . . . . c c 1 1 1 1 f b d b b f d d d c . . . f b b f . 
+        . . . . . . . . . . . . . . c c c f f f b d b b f c c . . . . . f b b f 
+        . . . . . . . . . . . . . . . . . . . . f f f f f . . . . . . . . f f f 
+        `, SpriteKind.Enemy)
+    SpaceShark.setPosition(140, randint(0, 116))
+    sprites.setInstant2DGravityAcceleration(
+    SpaceShark,
+    80,
+    58,
+    10
+    )
+}
 game.onGameUpdateWithHeading(function () {
     controller.moveSprite(UFO, 50, 50)
     console.logValue("x", UFO.x)
@@ -97,6 +124,41 @@ function SpawnMeteor4 () {
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.neutral, function (sprite, otherSprite) {
     sprite.destroy()
 })
+function SpawnObject () {
+    Object2 = sprites.create(img`
+        . . c c c c . . . . . . . . . 
+        . c 7 7 7 6 c . . . . . . . . 
+        c 6 7 7 7 6 c c c c c c c . . 
+        c 6 7 7 7 6 c 6 7 7 7 7 7 c . 
+        c 6 7 7 7 6 c 7 7 7 7 7 6 6 c 
+        c 6 7 7 7 6 c 6 6 6 6 6 6 6 c 
+        c 6 7 7 7 6 c c c c c c 6 6 c 
+        c 6 7 7 7 6 c 7 7 7 7 6 c c c 
+        c 6 7 7 7 6 c 7 7 7 7 7 6 c . 
+        c 6 7 7 7 6 c 7 7 7 7 7 6 c . 
+        c 6 7 7 7 6 c 7 7 7 7 7 6 c . 
+        c 6 7 7 7 6 c 7 7 7 7 7 6 c . 
+        c 6 7 7 7 6 c 7 7 7 7 7 6 c . 
+        c 6 7 7 7 6 c 7 7 7 7 7 6 c . 
+        c 6 7 7 7 6 c 7 7 7 7 7 6 c . 
+        c 6 7 7 6 6 c 7 7 7 7 7 6 c . 
+        c 6 6 6 6 6 c c c c c c c c . 
+        c 6 6 6 6 6 c 6 7 7 7 7 7 c . 
+        c 6 6 6 6 6 c 7 7 7 7 7 6 6 c 
+        c 6 6 6 6 6 c 6 6 6 6 6 6 6 c 
+        c 6 6 6 6 6 c 6 6 6 6 6 6 6 c 
+        c 6 6 6 6 6 c 6 6 6 6 6 6 6 c 
+        . c c c c c c c c c c c c c c 
+        . c b b c . . . . . c b b c . 
+        `, SpriteKind.Enemy)
+    Object2.setPosition(10, randint(0, 116))
+    sprites.setInstant2DGravityAcceleration(
+    Object2,
+    80,
+    58,
+    10
+    )
+}
 scene.onHitWall(SpriteKind.Enemy, function (sprite, location) {
     sprite.destroy()
 })
@@ -144,6 +206,8 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     info.changeLifeBy(-1)
     UFO.setPosition(80, 58)
 })
+let Object2: Sprite = null
+let SpaceShark: Sprite = null
 let meteor: Sprite = null
 let UFO: Sprite = null
 let Black_Hole: Sprite = null
@@ -199,6 +263,16 @@ UFO.setPosition(80, 30)
 info.setLife(3)
 info.setScore(0)
 Start_Screen()
+game.onUpdateInterval(5000, function () {
+    if (info.score() > 30) {
+        SpawnObject()
+    }
+})
+game.onUpdateInterval(5000, function () {
+    if (info.score() > 50) {
+        SpawnSpaceShark()
+    }
+})
 game.onUpdateInterval(randint(1000, 5000), function () {
     SpawnMeteor()
 })
