@@ -91,6 +91,41 @@ function SpawnMeteor2 () {
     10
     )
 }
+function SpawnBookShelf () {
+    Bookshelf = sprites.create(img`
+        . c c c c c c c c c c c c c c c c c c c c c c . 
+        c b d d d d d d d d d d d d d d d d d d d d b c 
+        c d d d d d d d d d d d d d d d d d d d d d d c 
+        c d d d d d d d d d d d d d d d d d d d d d d c 
+        c d d d d d d d d d d d d d d d d d d d d d d c 
+        c d d d d d d d d d d d d d d d d d d d d d d c 
+        c d d d d d d d d d d d d d d d d d d d d d d c 
+        c b d d d d d d d d d d d d d d d d d d d d b c 
+        c c b b b b b b b b b b b b b b b b b b b b c c 
+        c c f f f f f f f f f f f f f f f f f f f f c c 
+        c b c c 3 3 c 6 c 4 4 c 3 c 7 c 6 6 c 3 c c b c 
+        c b c c 3 3 c 6 c 4 4 c 3 c 7 c 6 6 c 3 c c b c 
+        f b c c 3 3 c 6 c 4 4 c c c 7 c 6 6 c 3 c c b f 
+        f d c c c c c c c c c c c c c c c c c c c c d f 
+        f d c b b d d d d d d d d d d d d d d b b c d f 
+        f d f f f f f f f f f f f f f f f f f f f f d f 
+        f d c c c 6 c 3 3 c 4 c 6 c 4 4 c 3 c 7 c c d f 
+        f d c c c 6 c 3 3 c 4 c 6 c 4 4 c 3 c 7 c c d f 
+        f d c c c 6 c 3 3 c c c 6 c 4 4 c c c 7 c c d f 
+        f d c c c c c c c c c c c c c c c c c c c c d f 
+        f d c b b d d d d d d d d d d d d d d b b c d f 
+        f d c b b d d d d d d d d d d d d d d b b c d f 
+        f d f f f f f f f f f f f f f f f f f f f f d f 
+        f f f f f f f f f f f f f f f f f f f f f f f f 
+        `, SpriteKind.Enemy)
+    Bookshelf.setPosition(randint(0, 116), 110)
+    sprites.setInstant2DGravityAcceleration(
+    Bookshelf,
+    80,
+    58,
+    10
+    )
+}
 function Instructions (text: string) {
     game.showLongText(text, DialogLayout.Bottom)
 }
@@ -116,6 +151,33 @@ function SpawnMeteor4 () {
     meteor.setPosition(randint(0, 116), 110)
     sprites.setInstant2DGravityAcceleration(
     meteor,
+    80,
+    58,
+    10
+    )
+}
+function SpawnAngryComputer () {
+    AngryComputer = sprites.create(img`
+        . . . b b b b b b b b b . . . . 
+        . . b 1 d d d d d d d 1 b . . . 
+        . b 1 1 1 1 1 1 1 1 1 1 1 b . . 
+        . b d b c c c c c c c b d b . . 
+        . b d c f 6 6 6 6 6 f c d b . . 
+        . b d c 9 f 6 6 6 f 9 c d b . . 
+        . b d c 6 6 6 6 6 6 6 c d b . . 
+        . b d c 6 6 f f f 6 6 c d b . . 
+        . b d c 6 f 6 6 6 f 6 c d b . . 
+        . b d c c c c c c c c c d b . . 
+        . c b b b b b b b b b b b c . . 
+        c b c c c c c c c c c c c b c . 
+        c 1 d d d d d d d d d d d 1 c . 
+        c 1 d 1 1 d 1 1 d 1 1 d 1 1 c . 
+        c b b b b b b b b b b b b b c . 
+        c c c c c c c c c c c c c c c . 
+        `, SpriteKind.Enemy)
+    AngryComputer.setPosition(randint(0, 116), 10)
+    sprites.setInstant2DGravityAcceleration(
+    AngryComputer,
     80,
     58,
     10
@@ -207,6 +269,8 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     UFO.setPosition(80, 58)
 })
 let Object2: Sprite = null
+let AngryComputer: Sprite = null
+let Bookshelf: Sprite = null
 let SpaceShark: Sprite = null
 let meteor: Sprite = null
 let UFO: Sprite = null
@@ -264,6 +328,11 @@ info.setLife(3)
 info.setScore(0)
 Start_Screen()
 game.onUpdateInterval(5000, function () {
+    if (info.score() > 20) {
+        SpawnAngryComputer()
+    }
+})
+game.onUpdateInterval(5000, function () {
     if (info.score() > 30) {
         SpawnObject()
     }
@@ -271,6 +340,11 @@ game.onUpdateInterval(5000, function () {
 game.onUpdateInterval(5000, function () {
     if (info.score() > 50) {
         SpawnSpaceShark()
+    }
+})
+game.onUpdateInterval(5000, function () {
+    if (info.score() > 40) {
+        SpawnBookShelf()
     }
 })
 game.onUpdateInterval(randint(1000, 5000), function () {
